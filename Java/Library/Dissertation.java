@@ -1,4 +1,4 @@
 
-public class Dissertation {
+public class Dissertation implements Updateable  {
 
 }

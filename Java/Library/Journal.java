@@ -1,7 +1,7 @@
 
-public class Journal extends Item {
+public class Journal extends Item implements Updateable  {
 
-	public Journal(int isbn, String publisher) {
-		super(isbn, publisher);
+	public Journal(String name, int isbn, String publisher) {
+		super(name, isbn, publisher);
 	}
 }
