@@ -1,13 +1,6 @@
 
 public interface Updateable {
 	
-	private void create();
+	public void update();
 	
-	private void delete();
-	
-	private void update();
-	
-	private void read();
-	
-
 }

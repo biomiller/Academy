@@ -1,14 +1,34 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Inventory implements Updateable {
+public class Inventory {
 	
-	private ArrayList <Item> itemsIn;
-	private ArrayList <Item> itemsOut;
+	private HashMap <Integer,Item> items;
 	
 	public Inventory() {
-		this.itemsIn = new ArrayList<Item>();
-		this.itemsOut = new ArrayList<Item>();
-		
+		this.items = new HashMap <Integer,Item>();		
 	}
+
+	
+	
+	public HashMap <Integer,Item> addItem(Item item){
+		items.put(item.getId(),item);
+		return items;
+	}
+	
+	public HashMap <Integer,Item> removeItem(Item item){
+		items.remove(item.getId(),item);
+		return items;
+	}
+
+
+
+	public HashMap<Integer, Item> getItems() {
+		return items;
+	}
+
+	public void setItems(HashMap<Integer, Item> items) {
+		this.items = items;
+	}
+	
 
 }

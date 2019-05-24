@@ -1,10 +1,9 @@
-import java.util.ArrayList;
 
-public class Member  {
+public class Member {
 	
 	private int id;
 	private static int idcounter = 1;
-	private ArrayList <Item> itemsLoaned;
+	private Inventory itemsLoaned;
 	private String name;
 	private int age;
 	private String address;
@@ -13,18 +12,24 @@ public class Member  {
 		this.name = name;
 		this.age = age;
 		this.address = address;
-		this.itemsLoaned = new ArrayList <Item> ();
+		this.itemsLoaned = new Inventory ();
 		this.id = idcounter++;
 	}
 	
 	
-
-	public ArrayList<Item> getItemsLoaned() {
+	@Override
+	public String toString() {
+		return ("ID: " + id + " Name: " + name + " Age: " + age + " Address: " + address);
+	}
+	
+	public Inventory loanItem(Item item) {
+		itemsLoaned.addItem(item);
 		return itemsLoaned;
 	}
 	
-	public void setItemsLoaned(ArrayList<Item> itemsLoaned) {
-		this.itemsLoaned = itemsLoaned;
+	public Inventory returnItem(Item item) {
+		itemsLoaned.addItem(item);
+		return itemsLoaned;
 	}
 	
 	
@@ -36,8 +41,14 @@ public class Member  {
 	
 	
 	
-	
-	
+
+	public Inventory getItemsLoaned() {
+		return itemsLoaned;
+	}
+	public void setItemsLoaned(Inventory itemsLoaned) {
+		this.itemsLoaned = itemsLoaned;
+	}
+		
 	public int getAge() {
 		return age;
 	}
