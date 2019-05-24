@@ -19,7 +19,11 @@ public class Inventory {
 		items.remove(item.getId(),item);
 		return items;
 	}
-
+	
+	public Item getItemById(int id){
+		items.get(id);
+		return items.get(id);
+	}
 
 
 	public HashMap<Integer, Item> getItems() {

@@ -28,7 +28,7 @@ public class Member {
 	}
 	
 	public Inventory returnItem(Item item) {
-		itemsLoaned.addItem(item);
+		itemsLoaned.removeItem(item);
 		return itemsLoaned;
 	}
 	

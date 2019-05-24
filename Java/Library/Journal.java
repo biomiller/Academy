@@ -1,11 +1,12 @@
 
 public class Journal extends Item implements Updateable  {
 
+	private String field;
 
 
-	public Journal(String name, String isbn, String publisher, String condition) {
+	public Journal(String name, String isbn, String publisher, String condition, String field) {
 		super(name, isbn, publisher, condition);
-		// TODO Auto-generated constructor stub
+		this.field = field;
 	}
 
 	@Override

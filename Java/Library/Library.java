@@ -48,6 +48,16 @@ public class Library {
 		members.addNewMember(m);
 	}
 	
+/*	public Member getMemberById(int id) {
+		return members.getMemberById(id);
+	}
+	*/
+	
+	
+	
+	
+	
+	
 		
 	
 	

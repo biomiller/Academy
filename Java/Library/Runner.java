@@ -14,9 +14,11 @@ public class Runner {
 		
 		myLibrary.addNewItem(Book1);
 		
+		Journal Journal1 = new Journal("Nature Volume 569 Issue 7757", "1476-4687", "Nature", "New", "Biology");
+		
+		myLibrary.addNewItem(Book1);
 		
 		System.out.println(myLibrary.getMembers().getMemberById(1));
-		
 
 	}
 

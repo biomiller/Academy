@@ -18,6 +18,20 @@ public abstract class Item implements Updateable{
 		this.condition = condition;
 	}
 
+	
+	public void update(String name) {
+		this.name = name;
+	}
+	
+	public void update(int id) {
+		this.id = id;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return("ID: " + this.id + " Name: " + this.name + " ISBN: " + isbn + " Publisher: " + publisher + " Condition: " + condition);
+	}
 
 
 	public int getId() {
