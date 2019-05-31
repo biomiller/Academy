@@ -4,11 +4,13 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Tests {
@@ -60,9 +62,19 @@ public class Tests {
 		WebElement registerButton = driver.findElement(By.name("register"));
 		registerButton.submit();
 		
-		
-		
+		action.moveToElement(driver.findElement(By.linkText("sign-in"))).click().perform();
 
+		WebElement usernameBox = driver.findElement(By.name("userName"));
+		usernameBox.sendKeys(username);
+		
+		driver.findElement(By.name("password")).sendKeys(password);
+		action.moveToElement(driver.findElement(By.name("login"))).click().perform();
+		
+		
+		Select departDroplist = new Select(driver.findElement(By.name("fromPort")));   
+		departDroplist.selectByVisibleText("2");
+
+		
 
 		
 		
