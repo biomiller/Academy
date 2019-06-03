@@ -3,25 +3,34 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Garage {
+	
+	private static ArrayList<Vehicle> vehicleList;
 
-	private ArrayList<Vehicle> vehicleList;
-
-	public Garage() {
-		this.vehicleList = new ArrayList<Vehicle>();
+	private Garage() {
+		Garage.vehicleList = new ArrayList<Vehicle>();
+	}
+	
+	private static Garage instance;
+	
+	public static Garage getInstance() {
+		if(instance == null) {
+			instance = new Garage();
+		}
+		return instance;
 	}
 
-	public int getNumVehicles() {
+	public static int getNumVehicles() {
 		return vehicleList.size();
 	}
 
-	public ArrayList<Vehicle> addVehicle(Vehicle inputVehicle) {
+	public static ArrayList<Vehicle> addVehicle(Vehicle inputVehicle) {
 		vehicleList.add(inputVehicle);
 		return vehicleList;
 	}
 
 	// Remove a vehicle with a particular id from the garage
 
-	public void removeVehicleById(int id) {
+	public static void removeVehicleById(int id) {
 		for (int i = 0; i < vehicleList.size(); i++) {
 			if (vehicleList.get(i).getId() == id) {
 				vehicleList.remove(i);
@@ -31,7 +40,7 @@ public class Garage {
 
 	// Remove all vehicles from the garage of a particular type
 
-	public void removeVehicleByType(String input) {
+	public static void removeVehicleByType(String input) {
 		for (int i = 0; i < vehicleList.size(); i++) {
 			if (vehicleList.get(i).getClass().getCanonicalName() == input) {
 				vehicleList.remove(i);
@@ -41,13 +50,13 @@ public class Garage {
 
 	//
 
-	public List<Vehicle> searchType(String input) {
+	public static List<Vehicle> searchType(String input) {
 		return (vehicleList.stream().filter(v -> v.getClass().getCanonicalName().equals(input))
 				.collect(Collectors.toList()));
 
 	}
 
-	public double calcTotalCost() {
+	public static double calcTotalCost() {
 
 		double total = 0;
 
