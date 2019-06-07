@@ -13,39 +13,39 @@ public class Runner {
 		Plane plane2 = new Plane(9200, 2, 250, "Red", 2, 4, 2);
 
 		
-		Garage.getInstance();
-
-		Garage.addVehicle(car1);
-		Garage.addVehicle(car2);
-		Garage.addVehicle(boat1);
-		Garage.addVehicle(boat2);
-		Garage.addVehicle(plane1);
-		Garage.addVehicle(plane2);
+		Garage garage1 = new Garage();
+		
+		garage1.addVehicle(car1);
+		garage1.addVehicle(car2);
+		garage1.addVehicle(boat1);
+		garage1.addVehicle(boat2);
+		garage1.addVehicle(plane1);
+		garage1.addVehicle(plane2);
 	
 		System.out.println(car1.getId());
 		System.out.println(plane2.getId());
 
 		
-		System.out.println(Garage.searchType("Car"));
+		System.out.println(garage1.searchType("Car"));
 		
-		System.out.println(Garage.getNumVehicles());
+		System.out.println(garage1.getNumVehicles());
 		
-		Garage.removeVehicleById(6);
+		garage1.removeVehicleById(6);
 		
-		System.out.println(Garage.getNumVehicles());
+		System.out.println(garage1.getNumVehicles());
 		
 		
-		System.out.println(Garage.getNumVehicles());
+		System.out.println(garage1.getNumVehicles());
 		
 		System.out.println(car1.getCost());
 		System.out.println(plane1.getCost());
 		
 		
-		Garage.calcTotalCost();
+		garage1.calcTotalCost();
 		
-		Garage.removeVehicleByType("Car");
+		garage1.removeVehicleByType("Car");
 		
-		Garage.calcTotalCost();
+		garage1.calcTotalCost();
 
 
 		
