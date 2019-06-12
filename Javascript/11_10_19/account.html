@@ -2,17 +2,9 @@
 
 <body>
 
-
-
-    <!-- <button onclick=getAllAccountsFirstNames()>Get all first names</button>
-
-    <p>First names: 
-        <span id="output"></span>
-    </p> -->
-
     <h1>Create</h1>
 
-    <form>
+    <form onsubmit="return buttonClickCreateAccount()">
         <p>First Name:
             <input id="firstName" type="text">
         </p>
@@ -25,24 +17,24 @@
             <input id="accountNumber" type="text">
         </p>
 
-        <button onclick=createAccount()>Create new Account</button>
+        <button type="submit">Create new Account</button>
 
     </form>
 
     <h1>Delete</h1>
 
-    <form>
+    <form onsubmit="return buttonClickDeleteAccount()">
        
         <p>Account ID to remove:
             <input id="accountIdToRemove" type="text">
         </p>
         
-        <button onclick="deleteAccount()">Delete Account</button>
+        <button type="submit">Delete Account</button>
 
     </form>
 
     <h1>Update</h1>
-    <form onsubmit="return updateAccount()">
+    <form onsubmit="return buttonClickUpdateAccount()">
         <p>ID:
             <input id="updateId" type="text" required>
         </p>
@@ -64,10 +56,28 @@
 
     <h1>Read</h1>
 
-    <button onclick=getAllAccounts()>Get all accounts</button>
+        <p>ID:
+            <input id="getAccountId" type="text" required>
+        </p>
+        <button onclick=" return buttonClickGetAccount()">Get an account</button>
 
-    <table id="accounts">
+    <table id="accountTable">
         <tr>
+            <th>ID</th>
+            <th>Firstname</th>
+            <th>Lastname</th> 
+            <th>Age</th>
+        </tr>
+    </table>
+    <br>
+
+
+
+    <button onclick="return buttonClickGetAllAccounts()">Get all accounts</button>
+
+    <table id="accountsTable">
+        <tr>
+            <th>ID</th>
             <th>Firstname</th>
             <th>Lastname</th> 
             <th>Age</th>
@@ -78,7 +88,7 @@
 
 
 
-    <script src="accounts.js"></script>
+    <script src="accounts_2.js"></script>
 
 </body>
 

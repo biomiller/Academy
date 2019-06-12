@@ -87,6 +87,46 @@ function updateAccount(){
 }
 
 
+function getAnAccount(){
+
+    let req = new XMLHttpRequest();
+    
+    let accountId = document.getElementById("getAccountId").value;
+
+    req.onload = function(){
+
+        account = JSON.parse(req.responseText);
+
+        if (document.contains(document.getElementById("anAccountRow"))){
+                 document.getElementById("account").removeChild(document.getElementById("anAccountRow"));
+        } 
+
+            let newRow = document.createElement('TR');
+
+            newRow.id = "anAccountRow";
+
+            document.getElementById("account").appendChild(newRow);
+
+            let td1 = document.createElement('TD');
+            document.getElementById("anAccountRow").appendChild(td1);
+            td1.innerText = account.id;
+            let td2 = document.createElement('TD');
+            document.getElementById("anAccountRow").appendChild(td2);
+            td2.innerText = account.firstName;
+            let td3 = document.createElement('TD');
+            document.getElementById("anAccountRow").appendChild(td3);
+            td3.innerText = account.lastName;
+            let td4 = document.createElement('TD');
+            document.getElementById("anAccountRow").appendChild(td4);
+            td4.innerText = account.accountNumber;
+
+    }
+
+    req.open("GET",`http://localhost:8080/AccountSETemplate/api/account/getAnAccount/${accountId}`);
+
+    req.send();
+}
+
 
 function getAllAccounts(){
 
@@ -137,5 +177,6 @@ function getAllAccounts(){
     req.open("GET","http://localhost:8080/AccountSETemplate/api/account/getAllAccounts");
 
     req.send();
+
 
 }
