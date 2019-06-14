@@ -1,0 +1,66 @@
+
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+        <link href="resources/css/style.css" type="text/css" rel="stylesheet">
+    
+    </head>
+    <body>
+       <div class="container">
+
+            <div class="row" >
+                <div class="col">
+
+                    <div id="calcBox" class="container">
+
+                        <h3 id="title">Calculator</h3>
+    
+                        <form>
+                            <div>
+                            <p class="numberInput">Number 1:
+                                <input class="numberInput" id="num1" type="text">
+                            </p>
+                            
+                            <p class="numberInput">Number 2:
+                                <input class="numberInput" id="num2" type="text">
+                            </p>
+                            
+                            <div class="container" id="operatorBox">Operator: 
+                                <output id="operator"></output>
+                            </div>
+                           
+                            <div id=calcButtons>
+
+                            <div class = "row">
+                            <button class="btn btn-sm calcButton" type="button" onclick="calc().add()" >+</button>
+                            <button class="btn btn-sm calcButton" type="button" onclick="calc().subtract()" >-</button>
+                            <button class="btn btn-sm calcButton" type="button" onclick="calc().multiply()" >*</button>
+                            <button class="btn btn-sm calcButton" type="button" onclick="calc().divide()" >/</button>
+                            <button class="btn btn-sm calcButton" type="button" onclick="calc().square()" >^</button>
+                            </div>
+
+                            <button id="equalsButton" class="btn btn-lg calcButton" type="button" onclick="window.location.href='result.html'" >=</button>
+
+
+                            </div>
+
+                            </div>
+
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script src="resources/scripts/calculator.js"></script>
+
+    </body>
+</html>
+
+

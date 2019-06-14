@@ -1,0 +1,51 @@
+#calcBox{
+    margin:auto;
+    margin-top: 20px;
+    width:220px;
+    border-width:10px black;
+    border-style: solid;
+    border-radius: 20px;
+    background-color: lightgrey;
+}
+
+#calcButtons{
+    margin:auto;
+    width:55%;
+}
+
+#calcButton{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#title{
+    margin-top: 10px;
+    text-align: center;
+}
+
+#resultBox{
+    margin-top:10px;
+    background-color: white;
+}
+
+#equals{
+    margin:auto;
+    width: 100%;
+}
+
+.numberInput{
+    text-align: center;
+}
+
+.calcButton{
+    background-color: grey;
+    color:white;
+    border-color: black;
+}
+
+
+
+
+
+
+

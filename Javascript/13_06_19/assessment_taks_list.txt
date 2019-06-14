@@ -1,0 +1,20 @@
+job list
+
+github repo and control - Phil
+
+web page design - Karishma
+	- draw out vague design
+
+figuring out the api in java - Jun & Nick
+
+Product Owner (present and talk to Matt) - Karishma
+
+9:45
+
+10:05 meeting 1 recap of what we've done!
+	
+
+karishma - start building html pages
+Phil - list what buttons will do on click, fields required
+Jun - set up Trello board, prioritise tasks
+Owen & Nick - work through swagger-ui to pick out methods needed
