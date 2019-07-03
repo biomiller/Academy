@@ -1,0 +1,31 @@
+# create a group
+az group create --name [RESOURCE_GROUP_NAME] --location [LOCATION]
+
+# list locations
+az account list-locations
+
+# configure default location
+az configure --defaults location=[DEFAULT_LOCATION]
+
+# show resource groups
+az group list
+
+# show a specific resource group
+az group show --name [RESOURCE_GROUP_NAME]
+
+# delete a resource group
+az group delete --name [RESOURCE_GROUP_NAME]
+az group delete --name [RESOURCE_GROUP_NAME] --yes --no-wait
+
+# create a virtual network
+az network vnet create --resource-group [RESOURCE_GROUP] --name [VNET_NAME]
+az network vnet create --resource-group [RESOURCE_GROUP] --name [VNET_NAME] --address-prefixes [ADDRESS_PREFIX]
+
+# create a subnet
+az network vnet subnet create --resource-group [RESOURCE_GROUP] --name [SUBNET_NAME] --vnet-name [VNET_NAME] --address-prefixes [SUBNET_PREFIX]
+
+# list all virtual networks
+az network vnet list
+
+# delete a virtual network
+az network vnet delete --resource-group [RESOURCE_GROUP] --name [VNET _NAME]
