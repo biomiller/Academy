@@ -1,5 +1,10 @@
-# create a group
-az group create --name [RESOURCE_GROUP_NAME] --location [LOCATION]
+# Linux
+curl -L https://aka.ms/InstallAzureCli | bash
+
+# Windows
+https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest
+
+##################################################################################################
 
 # list locations
 az account list-locations
@@ -7,15 +12,26 @@ az account list-locations
 # configure default location
 az configure --defaults location=[DEFAULT_LOCATION]
 
+# configure default resource-group
+az configure --defaults group=[DEFAULT_RESOURCE_GROUP]
+
+
+# create a group
+az group create --name [RESOURCE_GROUP_NAME] --location [LOCATION]
+
+# delete a group
+az group delete --name [RESOURCE_GROUP_NAME]
+
 # show resource groups
 az group list
+az group list --output table
 
 # show a specific resource group
 az group show --name [RESOURCE_GROUP_NAME]
 
 # delete a resource group
-az group delete --name [RESOURCE_GROUP_NAME]
 az group delete --name [RESOURCE_GROUP_NAME] --yes --no-wait
+az group delete --name [RESOURCE_GROUP_NAME]
 
 # create a virtual network
 az network vnet create --resource-group [RESOURCE_GROUP] --name [VNET_NAME]
@@ -28,4 +44,72 @@ az network vnet subnet create --resource-group [RESOURCE_GROUP] --name [SUBNET_N
 az network vnet list
 
 # delete a virtual network
-az network vnet delete --resource-group [RESOURCE_GROUP] --name [VNET _NAME]
+az network vnet delete --resource-group [RESOURCE_GROUP] --name [VNET _NAME] --admin-name [ADMIN_NAME] --admin-password [ADMIN_PASSWORD]
+
+# create a network security group 
+az network nsg create --resource-group [RESOURCE_GROUP] --name [NSG_NAME]
+
+
+# create a rule
+az network nsg rule create --resource-group [RESOURCE_GROUP] --name [RULE_NAME] --priority [PRIORITY] --nsg-name [NSG_NAME] --destination-port-ranges [DESITNATION_PORT_RANGES]
+
+# create a public ip address
+az network public-ip create --resource-group [RESOURCE_GROUP] --name [PUBLIC_IP_NAME] 
+
+# create a public ip address with DNS
+az network public-ip create --resource-group [RESOURCE_GROUP] --name [PUBLIC_IP_NAME] --dns-name [DNS_NAME]
+
+# create a static ip address
+az network public-ip create --resource-group [RESOURCE_GROUP] --name [PUBLIC_IP_NAME] --allocation-method [ALLOCATION_METHOD]
+
+# create a network interface
+az network nic create --resource-group [RESOURCE_GROUP_NAME] --name [NETWORK_INTERFACE_NAME] --vnet-name [VIRTUAL_NETWORK_NAME] --subnet [SUBNET_NAME]
+
+# create a network interface with a public ip
+az network nic create --resource-group [RESOURCE_GROUP_NAME] --name [NETWORK_INTERFACE_NAME] --vnet-name [VIRTUAL_NETWORK_NAME] --subnet [SUBNET_NAME] --public-ip-address [PUBLIC_IP_ADDRESS_NAME]
+
+# update network interface to add a network security group
+az network nic update --resource-group [RESOURCE_GROUP_NAME] --name [NETWORK_INTERFACE_NAME] --network-security-group [NSG_NAME]
+
+# delete a network interface
+az network nic delete --resource-group [RESOURCE_GROUP_NAME] --name [NETWORK_INTERFACE_NAME]
+
+# create a virtual machine
+az vm create --resource-group [RESOURCE_GROUP_NAME] --name [VIRTUAL_MACHINE_NAME] --image [IMAGE_URN] --admin-user
+
+# create a vm with a network interface
+az vm create --resource-group [RESOURCE_GROUP_NAME] --name [VIRTUAL_MACHINE_NAME] --image [IMAGE_URN] --nics [NETWORK_INTERFACES]
+
+# os table
+az vm image list -o table
+
+# delete a virtual machine
+az vm delete --resource-group [RESOURCE_GROUP_NAME] --name [VIRTUAL_MACHINE_NAME]
+
+# open a port
+az vm open-port --resource-group [RESOURCE_GROUP_NAME] --name [VIRTUAL_MACHINE_NAME] --port 80
+
+
+############################################################################################
+
+# ssh into another VM from a VM
+ssh <user>@<target-ip>
+
+# generate ssh keys
+ssh-keygen
+
+# add a new user
+sudo adduser <name>
+
+# switch user
+su - <user>
+
+# copy public key from target vm into authorized key of current vm
+on target vm
+cat ./.ssh/id_rsa.pub
+nano ./.ssh/authorized_keys
+
+
+
+
+

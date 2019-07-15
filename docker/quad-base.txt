@@ -1,0 +1,100 @@
+
+FROM node:10 as node
+
+WORKDIR /image
+
+COPY . .
+
+RUN ["npm", "install"]
+
+RUN ["npm", "run", "build"]
+
+FROM node:10 as node-serve
+
+COPY --from=node /image/build .
+
+RUN ["npm", "install", "-g", "serve"]
+
+EXPOSE 3000
+
+ENTRYPOINT ["/usr/local/bin/serve", "-l", "3000"]
+
+########################################################
+
+FROM maven:latest AS maven
+
+COPY . .
+
+RUN ["mvn", "package"]
+
+FROM java:8
+
+COPY --from=maven target/Spring_Day_Two-0.0.1-SNAPSHOT.jar /opt/Spring_Day_Two-0.0.1-SNAPSHOT.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/opt/Spring_Day_Two-0.0.1-SNAPSHOT.jar"]
+
+
+#############################################################
+
+---
+version: '3.7'
+services:
+    nginx:
+     image: nginx:latest
+     volumes:
+     - type: bind
+       source: ./nginx.conf
+       target: /etc/nginx/nginx.conf
+     ports:
+     - target: 80
+       protocol: tcp
+       published: 80
+     depends_on:
+      - client
+      - server
+      - mongo
+    server:
+     image: localhost:5000/server
+     build:
+     - context: ./server
+     depends_on:
+      - mongo
+    client:
+     image: localhost:5000/client
+     build:
+     - context: ./client
+     environment:
+     - REACT_APP_SERVICE_HOST=${REACT_APP_SERVICE_HOST}
+     depends_on:
+      - server
+      - mongo
+    mongo:
+     image: mongo:latest
+    mongo-seed:
+      image: fvilers/mongo-seed:1.0.0
+      environment:
+      - MONGO_HOST=mongo
+      - MONGO_PORT=27017
+      volumes:
+      - ./data:/data
+      command:
+      - "mongoimport --host mongo --port 27017 --db test --mode upsert --type json --file /data/account.json --jsonArray"
+
+
+...
+
+#####################################################
+events {}
+http {
+	server{
+		listen 80;
+		location / {
+			proxy_pass http://client:3000/;
+		}
+		location / {
+			proxy_pass http://server:8080/;
+		}
+	}
+}

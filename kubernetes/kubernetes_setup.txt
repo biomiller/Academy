@@ -1,0 +1,59 @@
+#!/bin/bash
+
+
+## Container Network Interface Plugins (CNI) ##
+
+CNI_VERSION="v0.6.0"
+sudo mkdir -p /opt/cni/bin
+
+sudo curl -L "https://github.com/containernetworking/plugins/releases/download/${CNI_VERSION}/cni-plugins-amd64-${CNI_VERSION}.tgz" | sudo tar -C /opt/cni/bin/ -xz
+
+## Kubelet Container Runtime Interface (CRI) ## 
+
+CRICTL_VERSION="v1.11.1"
+sudo mkdir -p /opt/bin
+
+sudo curl -L "https://github.com/kubernetes-incubator/cri-tools/releases/download/${CRICTL_VERSION}/crictl-${CRICTL_VERSION}-linux-amd64.tar.gz" | sudo tar -C /opt/bin -xz
+
+## kubeadm, kubelet Service & kubectl ##
+
+RELEASE="$(sudo curl -sSL https://dl.k8s.io/release/stable.txt)"
+
+mkdir -p /opt/bin
+
+cd /opt/bin
+
+sudo curl -L --remote-name-all https://storage.googleapis.com/kubernetes-release/release/${RELEASE}/bin/linux/amd64/{kubeadm,kubelet,kubectl}
+
+sudo chmod +x {kubeadm,kubelet,kubectl}
+
+mkdir -p /etc/systemd/system/kubelet.service.d
+
+sudo curl -sSL "https://raw.githubusercontent.com/kubernetes/kubernetes/${RELEASE}/build/debs/kubelet.service" | sudo sed "s:/usr/bin:/opt/bin:g" > /etc/systemd/system/kubelet.service
+
+sudo curl -sSL "https://raw.githubusercontent.com/kubernetes/kubernetes/${RELEASE}/build/debs/10-kubeadm.conf" | sed "s:/usr/bin:/opt/bin:g" > /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
+
+systemctl enable --now kubelet
+
+## Install Dependencies ##
+
+apt install -y ebtables socat
+curl https://get.docker.com | bash
+
+## Initialise Cluster ##
+
+PATH=$PATH:/opt/bin:/opt/cni/bin
+
+kubeadm init --pod-network-cidr=192.168.0.0/16
+
+## Calico ##
+
+export KUBECONFIG=/etc/kubernetes/admin.conf
+kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+kubectl apply -f https://docs.projectcalico.org/v3.3/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
+
+
+## Allow Pods on the Master Node ##
+kubectl taint nodes --all node-role.kubernetes.io/master-
+
+
