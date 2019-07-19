@@ -1,7 +1,9 @@
-az aks create --name aks-test -g AKS
+az group create --name AKS
+
+az aks create --name aks-project -g AKS --node-count 2
 
 # get credecitals for master api
-az aks get-credentials --name aks-test -g AKS
+az aks get-credentials --name aks-project -g AKS
 
 
 
@@ -22,3 +24,10 @@ kubectl apply -f .
 kubectl logs [CONTAINER]
 
 kubectl exec -it [CONTAINER] /bin/bash
+
+kubectl delete po,svc --all
+
+
+kubectl set image deployments/number-generator number-generator=teamdeadweight/number_generator:2char
+
+kubectl rollout undo deployments/nginx
