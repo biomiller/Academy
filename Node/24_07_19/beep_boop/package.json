@@ -1,0 +1,17 @@
+{
+  "name": "24_07_19",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "audio-context": "^1.0.3",
+    "delay": "^4.3.0",
+    "web-audio-api": "^0.2.2"
+  }
+}
