@@ -106,7 +106,7 @@ router.put("/updateItem", (req, res) => {
                         }
                     )
                         .then(() => res.status(200).send("Item updated"))
-                        
+
 
                 } else {
                     res.status(404).send(errors.username)
@@ -148,24 +148,31 @@ router.put("/updateManyItems", (req, res) => {
 // @access Public
 router.delete("/deleteItem", (req, res) => {
 
-    Item.findOne({ "username": req.body.username })
-        .then((item) => bcrypt.compare(req.body.email, item.email))
-        .then(match => {
+    Item.findById(req.body._id).then(item => {
+        bcrypt.compare(req.body.email, item.email).then(match => {
             if (match) {
-                Item.deleteOne({ "username": req.body.username })
+                item
+                    .remove()
                     .then((ok) => {
                         if (ok.n == 0) {
                             res.status(200).send("Item not deleted")
                         } else {
                             res.status(200).send("Item deleted")
                         }
-
                     })
+                    .catch(err => 
+                        res.status(404).send("No item found.")
+                    );
+            } else {
+                res.status(404).send("Email not correct.")
             }
-        }
-        )
-        .catch(err => res.status(404).json({ noItems: "Item not deleted." }))
-})
+        });
+        
+    })
+    .catch(err => res.status(404).json({ noItems: "Id not found." }));
+});
+
+
 
 
 // @route DELETE items/deleteManyItems

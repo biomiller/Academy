@@ -8,6 +8,8 @@ import {
     Nav
 } from 'reactstrap';
 
+import { Login } from './Login.js';
+
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -18,12 +20,10 @@ export class AppNavbar extends Component {
             <div>
                 <Navbar color="light" light expand="md">
                     <NavbarBrand>Discussion Board</NavbarBrand>
+                    <NavbarBrand>Logged in as: {this.props.username}</NavbarBrand>
                     <Nav className="ml-auto">
                         <NavItem>
-                            <NavLink href="#">Sign Up</NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink href="#">Login</NavLink>
+                            <NavLink ><Login login={this.props.login} /></NavLink>
                         </NavItem>
                     </Nav>
                 </Navbar>

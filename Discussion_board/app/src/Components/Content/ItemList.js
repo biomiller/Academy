@@ -1,34 +1,22 @@
-import React, { Component } from 'react';
-import { Button } from "reactstrap";
-import axios from "axios";
+import React from 'react';
+import { Item } from './Item.js';
 
-export class ItemList extends Component {
 
-    constructor() {
-        super();
-        this.state = {
-          data: ""
-        }
+export function ItemList(props) {
+
+  return (
+    <div>
+      {props.data.map(item => (
+        <Item
+          key={item._id}
+          email={props.email}
+          username={props.username}
+          data={item}
+          getAllItems={props.getAllItems}
+        />
+      ))
       }
+    </div>
 
-    render() {
-        return (
-            <div>
-                <Button padding="10px" outline={true} onClick={this.makeRequest}>Get Items</Button>
-                <p>{this.state.data}</p>
-            </div>
-
-        );
-    }
-
-    makeRequest = () => {
-        axios
-          .get("http://localhost:5000/item/getAll")
-          .then(response => {
-            this.setState({
-              data: response.data
-            });
-          });
-      };
-
+  );
 }
