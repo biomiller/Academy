@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`snapshot test 1`] = `ShallowWrapper {}`;
+
+exports[`snapshot test 2`] = `ShallowWrapper {}`;

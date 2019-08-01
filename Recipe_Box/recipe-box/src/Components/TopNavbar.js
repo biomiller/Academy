@@ -8,6 +8,8 @@ import {
     Nav,
     Button
 } from 'reactstrap';
+import { Link } from "react-router-dom";
+
 
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -21,7 +23,7 @@ export function TopNavbar() {
                 <NavbarBrand><Searchbar /></NavbarBrand>
                 <Nav>
                     <NavItem>
-                        <Button href="/NewRecipe">New Recipe</Button>
+                    <Link to={`/NewRecipe`}><Button>New Recipe</Button></Link>
                     </NavItem>
                 </Nav>
             </Navbar>

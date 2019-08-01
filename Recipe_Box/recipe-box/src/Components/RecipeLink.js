@@ -1,34 +1,23 @@
 import React from 'react';
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from "react-router-dom";
-
-import {
-    Container,
-    Row,
-    Col
-} from 'reactstrap';
+import {Link} from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.css';
 
 RecipeLink.defaultProps = {
-    name:"Recipe"
+    name: "Recipe"
 };
 
 export function RecipeLink(props) {
 
+    let handleClick = () => {
+        props.setCurrentRecipe(props.recipe)
+    };
+
     return (
-            <Row>
-                <Col sm={{ size: "3", offset: 1 }}>
-                    <Router>
-                        <Link to="/"><h3>{props.name}</h3></Link>
-                        {/* <Route path="/recipe1" component {} */}
-                    </Router>
-                </Col>
-            </Row>
+        
+        <Link to={`/recipe/${props.recipe._id}`} onClick={handleClick}><h2>{props.recipe.name}</h2></Link>
+
     );
 }
 
